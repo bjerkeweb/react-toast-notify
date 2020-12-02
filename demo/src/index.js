@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { jsx, css } from '@emotion/react';
+import { jsx } from '@emotion/react';
 
 const rootElement = document.getElementById('root');
 
