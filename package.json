@@ -33,7 +33,8 @@
     "react-transition-group": "^4.4.1"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "react-dom": ">=16"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.8",
