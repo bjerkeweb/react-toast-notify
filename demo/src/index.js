@@ -1,19 +1,15 @@
-/** @jsx jsx */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { jsx } from '@emotion/react';
+import App from './app';
+import { ToastProvider } from '../../index';
 
 const rootElement = document.getElementById('root');
 
-const App = () => (
-  <div>
-    <h1>React Toast Notify</h1>
-  </div>
-);
-
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ToastProvider>
+      <App />
+    </ToastProvider>
   </React.StrictMode>,
   rootElement
 );

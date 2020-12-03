@@ -6,9 +6,10 @@
     "airbnb",
     "prettier"
   ],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "@emotion"],
   "rules": {
     "prettier/prettier": ["error"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "@emotion/jsx-import": "error"
   }
 }

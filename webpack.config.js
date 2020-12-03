@@ -7,6 +7,7 @@ const htmlPlugin = new HtmlWebpackPlugin({
 });
 
 module.exports = {
+  mode: process.NODE_ENV === 'production' ? 'production' : 'development',
   entry: path.join(__dirname, 'demo/src/index.js'),
   output: {
     path: path.join(__dirname, 'demo/dist'),
