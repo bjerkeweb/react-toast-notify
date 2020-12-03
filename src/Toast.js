@@ -1,10 +1,33 @@
 /** @jsx jsx */
 import { useEffect, useRef, useState } from 'react';
 import { jsx, css } from '@emotion/react';
-import { Transition } from 'react-transition-group';
+import { InfoIcon, WarnIcon, ErrorIcon, SuccessIcon } from './icons';
 
 const duration = 220;
 export const gutter = 10;
+
+const appearances = {
+  info: {
+    icon: InfoIcon,
+    color: 'rgb(38, 133, 255)',
+    bgColor: 'rgba(38, 133, 255, 0.11)'
+  },
+  warn: {
+    icon: WarnIcon,
+    color: 'rgb(229 160 9)',
+    bgColor: 'rgba(229, 160, 9, 0.11)'
+  },
+  error: {
+    icon: ErrorIcon,
+    color: 'rgb(246, 85, 74)',
+    bgColor: 'rgba(246, 85, 74, 0.11)'
+  },
+  success: {
+    icon: SuccessIcon,
+    color: 'rgb(51, 196, 142)',
+    bgColor: 'rgba(51, 196, 142, 0.11)'
+  }
+};
 
 const defaultStyles = {
   transition: `transform ${duration}ms cubic-bezier(0.2, 0, 0, 1), opacity ${duration}ms`,
@@ -17,8 +40,7 @@ const defaultStyles = {
   borderRadius: 4,
   boxShadow: `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)`,
   marginBottom: '12px',
-  background: '#fff',
-  borderLeft: '4px solid #2685ff'
+  background: '#fff'
 };
 
 const transitionStyles = {
@@ -32,11 +54,14 @@ const transitionStyles = {
 };
 
 export default function Toast({
+  type,
   transitionState,
   transitionDuration,
   remove,
   message
 }) {
+  const meta = appearances[type];
+  const Glyph = meta.icon;
   const [height, setHeight] = useState('auto');
   const elementRef = useRef(null);
 
@@ -62,28 +87,18 @@ export default function Toast({
       <div
         style={{
           ...defaultStyles,
+          borderLeft: `4px solid ${appearances[type].color}`,
           ...transitionStyles[transitionState]
         }}
       >
         <div
           css={{
             padding: '8px 4px 0',
-            backgroundColor: 'rgba(36, 131, 255, 0.11)'
+            backgroundColor: meta.bgColor,
+            color: meta.color
           }}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="#2685ff"
-            height="20"
-            width="20"
-          >
-            <path
-              fillRule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <Glyph />
         </div>
         <div
           css={{

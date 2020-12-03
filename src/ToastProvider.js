@@ -9,7 +9,7 @@ const ToastContext = React.createContext();
 export function ToastProvider({ children, placement }) {
   const [toasts, setToasts] = useState([]);
 
-  const addToast = (message, { type = 'success' } = {}) => {
+  const addToast = (message, { type = 'info' } = {}) => {
     const id = uniqueId('toast-');
     const toast = { message, type, id };
     setToasts(prev => [...prev, toast]);
