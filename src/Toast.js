@@ -15,7 +15,7 @@ const defaultStyles = {
   justifyContent: 'space-between',
   border: '1px solid #ddd',
   borderRadius: 4,
-  boxShadow: `rgba(0, 0, 0, 0.176) 0px 3px 8px`,
+  boxShadow: `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)`,
   marginBottom: '12px',
   background: '#fff',
   borderLeft: '4px solid #2685ff'
@@ -75,8 +75,8 @@ export default function Toast({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="#2685ff"
-            height="18"
-            width="18"
+            height="20"
+            width="20"
           >
             <path
               fillRule="evenodd"
