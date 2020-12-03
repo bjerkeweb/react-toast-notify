@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import uniqueId from 'lodash.uniqueid';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { TransitionGroup, Transition } from 'react-transition-group';
 import ToastContainer from './ToastContainer';
 import Toast from './Toast';
 
@@ -10,7 +10,7 @@ export function ToastProvider({ children, placement }) {
   const [toasts, setToasts] = useState([]);
 
   const addToast = (message, { type = 'success' } = {}) => {
-    const id = uniqueId();
+    const id = uniqueId('toast-');
     const toast = { message, type, id };
     setToasts(prev => [...prev, toast]);
   };
@@ -23,14 +23,27 @@ export function ToastProvider({ children, placement }) {
     <ToastContext.Provider value={{ addToast, removeToast }}>
       {children}
       <ToastContainer placement={placement}>
-        {toasts.map(({ message, type, id }) => (
-          <Toast
-            key={id}
-            type={type}
-            remove={() => removeToast(id)}
-            message={message}
-          />
-        ))}
+        <TransitionGroup component={null}>
+          {toasts.map(({ message, type, id }) => (
+            <Transition
+              key={id}
+              appear
+              mountOnEnter
+              unmountOnExit
+              timeout={220}
+            >
+              {state => (
+                <Toast
+                  key={id}
+                  type={type}
+                  remove={() => removeToast(id)}
+                  message={message}
+                  transitionState={state}
+                />
+              )}
+            </Transition>
+          ))}
+        </TransitionGroup>
       </ToastContainer>
     </ToastContext.Provider>
   );

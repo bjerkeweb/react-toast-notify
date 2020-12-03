@@ -19,6 +19,7 @@ const ToastContainer = ({ placement = 'top-right', children }) => (
       boxSizing: 'border-box',
       maxHeight: '100%',
       zIndex: '1000',
+      overflow: 'hidden',
       padding: gutter,
       ...placements[placement]
     }}

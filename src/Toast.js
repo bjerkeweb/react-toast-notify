@@ -1,55 +1,135 @@
 /** @jsx jsx */
+import { useEffect, useRef, useState } from 'react';
 import { jsx, css } from '@emotion/react';
+import { Transition } from 'react-transition-group';
 
-export default function Toast({ message, type, remove }) {
+const duration = 220;
+export const gutter = 10;
+
+const defaultStyles = {
+  transition: `transform ${duration}ms cubic-bezier(0.2, 0, 0, 1), opacity ${duration}ms`,
+  opacity: 0,
+  overflow: 'hidden',
+  width: '350px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  border: '1px solid #ddd',
+  borderRadius: 4,
+  boxShadow: `rgba(0, 0, 0, 0.176) 0px 3px 8px`,
+  marginBottom: '12px',
+  background: '#fff',
+  borderLeft: '4px solid #2685ff'
+};
+
+const transitionStyles = {
+  entering: {
+    opacity: 1,
+    transform: `translate3d(120%, 0, 0)`
+  },
+  entered: { opacity: 1, transform: 'translate3d(0,0,0)' },
+  exiting: { opacity: 0, transform: 'scale(0.66)' },
+  exited: { opacity: 0, transform: 'scale(0.66)' }
+};
+
+export default function Toast({
+  transitionState,
+  transitionDuration,
+  remove,
+  message
+}) {
+  const [height, setHeight] = useState('auto');
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    if (transitionState === 'entered') {
+      const el = elementRef.current;
+      setHeight(el.offsetHeight + gutter);
+    }
+
+    if (transitionState === 'exiting') {
+      setHeight(0);
+    }
+  }, [transitionState]);
+
   return (
     <div
-      css={css`
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin-bottom: 12px;
-        min-width: 250px;
-        min-height: 34px;
-        box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1),
-          0 2px 15px 0 rgba(0, 0, 0, 0.05);
-        &:hover {
-          cursor: pointer;
-        }
-      `}
-      onClick={remove}
-      // onKeyDown={remove}
-      // role="button"
-      // tabIndex={0}
+      ref={elementRef}
+      style={{ height }}
+      css={{
+        transition: `height ${duration - 100}ms 100ms`
+      }}
     >
       <div
-        css={css`
-          margin: auto 0;
-          flex: 1 1 auto;
-          font-size: 14px;
-        `}
+        style={{
+          ...defaultStyles,
+          ...transitionStyles[transitionState]
+        }}
       >
-        {message}
-      </div>
-      <span
-        css={css`
-          align-self: flex-start;
-        `}
-      >
-        <svg
-          stroke="currentColor"
-          fill="currentColor"
-          strokeWidth="0"
-          viewBox="0 0 352 512"
-          height="12px"
-          width="12px "
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          css={{
+            padding: '8px 4px 0',
+            backgroundColor: 'rgba(36, 131, 255, 0.11)'
+          }}
         >
-          <path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" />
-        </svg>
-      </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="#2685ff"
+            height="18"
+            width="18"
+          >
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </div>
+        <div
+          css={{
+            padding: '8px 12px',
+            fontSize: 14,
+            color: '#47494E',
+            minHeight: 40,
+            flexGrow: 1
+          }}
+        >
+          {message}
+        </div>
+        <div
+          role="button"
+          css={{
+            opacity: 0.5,
+            padding: '8px 12px',
+            transition: 'opacity 150ms ease',
+            ':hover': {
+              opacity: 1,
+              cursor: 'pointer'
+            }
+          }}
+        >
+          <span
+            onClick={remove}
+            css={css`
+              align-self: flex-start;
+            `}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              height="16px"
+              width="16px"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
