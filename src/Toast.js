@@ -14,8 +14,8 @@ const appearances = {
   },
   warn: {
     icon: WarnIcon,
-    color: 'rgb(229 160 9)',
-    bgColor: 'rgba(229, 160, 9, 0.11)'
+    color: 'rgb(255, 176, 5)',
+    bgColor: 'rgba(255, 176, 5, 0.11)'
   },
   error: {
     icon: ErrorIcon,
@@ -30,6 +30,7 @@ const appearances = {
 };
 
 const defaultStyles = {
+  boxSizing: 'border-box',
   transition: `transform ${duration}ms cubic-bezier(0.2, 0, 0, 1), opacity ${duration}ms`,
   opacity: 0,
   overflow: 'hidden',
@@ -37,7 +38,7 @@ const defaultStyles = {
   display: 'flex',
   justifyContent: 'space-between',
   border: '1px solid #ddd',
-  borderRadius: 4,
+  borderRadius: 0,
   boxShadow: `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)`,
   marginBottom: '12px',
   background: '#fff'
@@ -61,7 +62,7 @@ export default function Toast({
   message
 }) {
   const meta = appearances[type];
-  const Glyph = meta.icon;
+  const Icon = meta.icon;
   const [height, setHeight] = useState('auto');
   const elementRef = useRef(null);
 
@@ -87,7 +88,7 @@ export default function Toast({
       <div
         style={{
           ...defaultStyles,
-          borderLeft: `4px solid ${appearances[type].color}`,
+          borderTop: `3px solid ${appearances[type].color}`,
           ...transitionStyles[transitionState]
         }}
       >
@@ -98,14 +99,15 @@ export default function Toast({
             color: meta.color
           }}
         >
-          <Glyph />
+          <Icon />
         </div>
         <div
           css={{
+            boxSizing: 'border-box',
             padding: '8px 12px',
             fontSize: 14,
             color: '#47494E',
-            minHeight: 40,
+            minHeight: 50,
             flexGrow: 1
           }}
         >
