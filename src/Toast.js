@@ -37,7 +37,6 @@ const defaultStyles = {
   width: '350px',
   display: 'flex',
   justifyContent: 'space-between',
-  border: '1px solid #ddd',
   borderRadius: 0,
   boxShadow: `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)`,
   marginBottom: '12px',

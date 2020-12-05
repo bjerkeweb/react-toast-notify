@@ -4,7 +4,7 @@ import { jsx, css } from '@emotion/react';
 import { useToast } from '../../src/index';
 
 export default function App() {
-  const { addToast } = useToast();
+  const { addToast, removeAll } = useToast();
   const [message, setMessage] = useState('');
 
   const onSubmit = e => {
@@ -63,6 +63,12 @@ export default function App() {
           }
         >
           Error
+        </button>
+      </div>
+
+      <div css={{ marginTop: 20 }}>
+        <button type="button" onClick={() => removeAll()}>
+          Remove All
         </button>
       </div>
     </React.Fragment>

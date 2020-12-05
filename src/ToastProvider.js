@@ -19,8 +19,16 @@ export function ToastProvider({ children, placement }) {
     setToasts(prev => prev.filter(t => t.id !== id));
   };
 
+  const removeAll = () => {
+    if (!toasts.length) {
+      return;
+    }
+
+    toasts.forEach(t => removeToast(t.id));
+  };
+
   return (
-    <ToastContext.Provider value={{ addToast, removeToast }}>
+    <ToastContext.Provider value={{ addToast, removeToast, removeAll }}>
       {children}
       <ToastContainer placement={placement}>
         <TransitionGroup component={null}>
