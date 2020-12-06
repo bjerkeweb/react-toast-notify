@@ -58,13 +58,40 @@ export default function Toast({
   type,
   transitionState,
   transitionDuration,
-  remove,
-  message
+  onDismiss,
+  message,
+  autoDismiss = true,
+  dismissTimeout = 4000
 }) {
   const meta = appearances[type];
   const Icon = meta.icon;
   const [height, setHeight] = useState('auto');
+  const [start, setStart] = useState(null);
+  const [remaining, setRemaining] = useState(dismissTimeout);
   const elementRef = useRef(null);
+  const timerRef = useRef();
+
+  const pauseTimer = () => {
+    clearTimeout(timerRef.current);
+    setRemaining(prev => prev - (Date.now() - start));
+  };
+
+  const startTimer = () => {
+    setStart(Date.now());
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(onDismiss, remaining);
+  };
+
+  useEffect(() => {
+    if (!autoDismiss) {
+      return;
+    }
+    startTimer();
+  }, []);
+
+  useEffect(() => {
+    return () => clearTimeout(timerRef.current);
+  }, []);
 
   useEffect(() => {
     if (transitionState === 'entered') {
@@ -84,6 +111,8 @@ export default function Toast({
       css={{
         transition: `height ${duration - 100}ms 100ms`
       }}
+      onMouseEnter={pauseTimer}
+      onMouseLeave={startTimer}
     >
       <div
         style={{
@@ -126,7 +155,7 @@ export default function Toast({
           }}
         >
           <span
-            onClick={remove}
+            onClick={onDismiss}
             css={css`
               align-self: flex-start;
             `}

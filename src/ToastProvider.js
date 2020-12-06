@@ -44,7 +44,7 @@ export function ToastProvider({ children, placement }) {
                 <Toast
                   key={id}
                   type={type}
-                  remove={() => removeToast(id)}
+                  onDismiss={() => removeToast(id)}
                   message={message}
                   transitionState={state}
                 />
