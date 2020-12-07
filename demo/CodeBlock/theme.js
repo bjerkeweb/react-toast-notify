@@ -20,7 +20,7 @@ export default {
   },
   'pre[class*="language-"]': {
     color: '#f8f8f2',
-    background: '#2E3440',
+    background: '#112a40',
     fontFamily: 'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
     textAlign: 'left',
     whiteSpace: 'pre',

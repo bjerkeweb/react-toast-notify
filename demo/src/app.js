@@ -6,23 +6,25 @@ import { ToastIcon, GithubIcon } from './icons';
 import * as colors from '../../src/colors';
 import CodeBlock from '../CodeBlock';
 
-const exampleCode = `import { ToastProvder, useToasts } from 'react-toast-notify';
+const exampleCode = type => `import { ToastProvider, useToast } from 'react-toast-notify';
+
+  const Alert = ({ content }) => (
+    const { addToast } = useToast();
+    <button
+      onClick={() => addToast(content, {type: '${type}'})}
+    >
+      Add Toast
+    </button>
+  )
 
   const App = () => (
-    const { addToast } = useToast();
-
     <ToastProvider>
-      <button
-        onClick={() => addToast('hello')}
-      >
-        Add Toast
-      </button>
+      <Alert />
     </ToastProvider>
   )`;
 
 export default function App() {
   const { addToast, removeAll } = useToast();
-  const [message, setMessage] = useState('');
   const [type, setType] = useState('info');
 
   const onSubmit = e => {
@@ -59,7 +61,7 @@ export default function App() {
             alignItems: 'center'
           }}
         >
-          <ToastIcon width={45} color="#292d3f" />
+          <ToastIcon width={45} color="#344250" />
           <div css={{ marginLeft: 20 }}>
             <h1 css={{ fontSize: 20, fontWeight: 600, marginBottom: 4 }}>
               react-toast-notify
@@ -111,9 +113,10 @@ export default function App() {
         }}
       >
         <div>
-          <h1 css={{ fontSize: 32, fontWeight: 400, marginBottom: 10 }}>
-            Send notifications
+          <h1 css={{ fontSize: 24, fontWeight: 500, marginBottom: 10 }}>
+            Send notifications in a jiffy
           </h1>
+          <p>Just wrap your </p>
           {/* <p css={{ marginTop: 0 }}>
         A simple notification system for React using Context and Hooks
         </p> */}
@@ -175,7 +178,8 @@ export default function App() {
                     backgroundImage:
                       'linear-gradient(180deg, rgba(0,0,0,0) 70%, rgba(0,0,0,0.05) 100%);',
                     transition: 'background 125ms ease',
-                    textShadow: '1px 1px rgba(0,0,0,0.05)'
+                    textShadow: '1px 1px rgba(0,0,0,0.05)',
+                    borderRadius: 30
                   }}
                 >
                   Add Toast
@@ -187,7 +191,8 @@ export default function App() {
                     border: '1px solid #eaeaed',
                     marginLeft: 10,
                     color: 'rgba(41, 45, 63, 1)',
-                    fontWeight: 400
+                    fontWeight: 400,
+                    borderRadius: 30
                   }}
                   onClick={() => removeAll()}
                 >
@@ -197,7 +202,7 @@ export default function App() {
             </form>
           </div>
         </div>
-        <CodeBlock>{exampleCode}</CodeBlock>
+        <CodeBlock>{exampleCode(type)}</CodeBlock>
       </div>
     </div>
   );
