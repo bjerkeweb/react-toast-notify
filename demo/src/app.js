@@ -4,6 +4,21 @@ import { jsx, css } from '@emotion/react';
 import { useToast } from '../../src/index';
 import { ToastIcon, GithubIcon } from './icons';
 import * as colors from '../../src/colors';
+import CodeBlock from '../CodeBlock';
+
+const exampleCode = `import { ToastProvder, useToasts } from 'react-toast-notify';
+
+  const App = () => (
+    const { addToast } = useToast();
+
+    <ToastProvider>
+      <button
+        onClick={() => addToast('hello')}
+      >
+        Add Toast
+      </button>
+    </ToastProvider>
+  )`;
 
 export default function App() {
   const { addToast, removeAll } = useToast();
@@ -24,7 +39,7 @@ export default function App() {
       css={{
         marginLeft: 'auto',
         marginRight: 'auto',
-        maxWidth: 800,
+        maxWidth: 1050,
         padding: '0 20px'
       }}
     >
@@ -95,89 +110,94 @@ export default function App() {
           alignItems: 'center'
         }}
       >
-        <h1 css={{ fontSize: 32, fontWeight: 400, marginBottom: 10 }}>Demo</h1>
-        {/* <p css={{ marginTop: 0 }}>
-          A simple notification system for React using Context and Hooks
+        <div>
+          <h1 css={{ fontSize: 32, fontWeight: 400, marginBottom: 10 }}>
+            Send notifications
+          </h1>
+          {/* <p css={{ marginTop: 0 }}>
+        A simple notification system for React using Context and Hooks
         </p> */}
 
-        <div
-          css={{
-            marginTop: 30,
-            backgroundColor: '#fff',
-            border: '1px solid #e5e7eb',
-            borderRadius: 6,
-            padding: 30,
-            flexGrow: 1,
-            maxWidth: '500px'
-          }}
-        >
-          <form onSubmit={onSubmit}>
-            <input
-              type="radio"
-              name="type"
-              value="info"
-              id="info"
-              onChange={onChange}
-              defaultChecked
-            />
-            <label htmlFor="info">Info</label>
+          <div
+            css={{
+              marginTop: 30
+              // backgroundColor: '#fff',
+              // border: '1px solid #e5e7eb',
+              // borderRadius: 6,
+              // padding: 30,
+              // flexGrow: 1,
+              // maxWidth: '500px'
+            }}
+          >
+            <form onSubmit={onSubmit}>
+              <input
+                type="radio"
+                name="type"
+                value="info"
+                id="info"
+                onChange={onChange}
+                defaultChecked
+              />
+              <label htmlFor="info">Info</label>
 
-            <input
-              type="radio"
-              name="type"
-              value="success"
-              id="success"
-              onChange={onChange}
-            />
-            <label htmlFor="success">Success</label>
+              <input
+                type="radio"
+                name="type"
+                value="success"
+                id="success"
+                onChange={onChange}
+              />
+              <label htmlFor="success">Success</label>
 
-            <input
-              type="radio"
-              name="type"
-              value="warn"
-              id="warning"
-              onChange={onChange}
-            />
-            <label htmlFor="warning">Warning</label>
+              <input
+                type="radio"
+                name="type"
+                value="warn"
+                id="warning"
+                onChange={onChange}
+              />
+              <label htmlFor="warning">Warning</label>
 
-            <input
-              type="radio"
-              name="type"
-              value="error"
-              id="error"
-              onChange={onChange}
-            />
-            <label htmlFor="error">Error</label>
+              <input
+                type="radio"
+                name="type"
+                value="error"
+                id="error"
+                onChange={onChange}
+              />
+              <label htmlFor="error">Error</label>
 
-            <div css={{ marginTop: 20 }}>
-              <button
-                type="submit"
-                css={{
-                  backgroundColor: colors[type],
-                  backgroundImage:
-                    'linear-gradient(180deg, rgba(0,0,0,0) 70%, rgba(0,0,0,0.05) 100%);',
-                  transition: 'background 125ms ease',
-                  textShadow: '1px 1px rgba(0,0,0,0.05)'
-                }}
-              >
-                Add Toast
-              </button>
-              <button
-                type="button"
-                css={{
-                  background: 'none',
-                  border: '1px solid #eaeaed',
-                  marginLeft: 10,
-                  color: 'rgba(41, 45, 63, 1)',
-                  fontWeight: 400
-                }}
-                onClick={() => removeAll()}
-              >
-                Clear All
-              </button>
-            </div>
-          </form>
+              <div css={{ marginTop: 20 }}>
+                <button
+                  type="submit"
+                  css={{
+                    backgroundColor: colors[type],
+                    backgroundImage:
+                      'linear-gradient(180deg, rgba(0,0,0,0) 70%, rgba(0,0,0,0.05) 100%);',
+                    transition: 'background 125ms ease',
+                    textShadow: '1px 1px rgba(0,0,0,0.05)'
+                  }}
+                >
+                  Add Toast
+                </button>
+                <button
+                  type="button"
+                  css={{
+                    background: 'none',
+                    border: '1px solid #eaeaed',
+                    marginLeft: 10,
+                    color: 'rgba(41, 45, 63, 1)',
+                    fontWeight: 400
+                  }}
+                  onClick={() => removeAll()}
+                >
+                  Clear All
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
+        <CodeBlock>{exampleCode}</CodeBlock>
       </div>
     </div>
   );

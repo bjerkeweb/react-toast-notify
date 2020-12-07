@@ -117,7 +117,7 @@ export default function Toast({
       <div
         style={{
           ...defaultStyles,
-          borderTop: `3px solid ${appearances[type].color}`,
+          borderTop: `4px solid ${appearances[type].color}`,
           ...transitionStyles[transitionState]
         }}
       >
