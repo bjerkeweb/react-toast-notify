@@ -23,13 +23,20 @@ const exampleCode = type => `import { ToastProvider, useToast } from 'react-toas
     </ToastProvider>
   )`;
 
+const exampleMessages = {
+  success: 'Everything is a-okay',
+  info: 'Here is some info for you',
+  error: 'Oops! Something went wrong',
+  warn: 'You might want to know about this'
+};
+
 export default function App() {
   const { addToast, removeAll } = useToast();
-  const [type, setType] = useState('info');
+  const [type, setType] = useState('success');
 
   const onSubmit = e => {
     e.preventDefault();
-    addToast(`This is a ${type} message`, { type });
+    addToast(`${exampleMessages[type]}`, { type });
   };
 
   const onChange = e => {
@@ -41,8 +48,7 @@ export default function App() {
       css={{
         marginLeft: 'auto',
         marginRight: 'auto',
-        maxWidth: 1050,
-        padding: '0 20px'
+        padding: '0'
       }}
     >
       <div
@@ -50,9 +56,10 @@ export default function App() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          paddingTop: '1.5rem',
-          paddingBottom: '1.5rem',
-          borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
+          // paddingTop: '1.5rem',
+          // paddingBottom: '1.5rem',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+          padding: '1rem 2rem'
         }}
       >
         <div
@@ -61,12 +68,12 @@ export default function App() {
             alignItems: 'center'
           }}
         >
-          <ToastIcon width={45} color="#344250" />
-          <div css={{ marginLeft: 20 }}>
-            <h1 css={{ fontSize: 20, fontWeight: 600, marginBottom: 4 }}>
+          <ToastIcon width={40} color="#344250" />
+          <div css={{ marginLeft: 16 }}>
+            <h1 css={{ fontSize: 20, fontWeight: 500, marginBottom: -4 }}>
               react-toast-notify
             </h1>
-            <p css={{ marginTop: 0, fontSize: 15 }}>
+            <p css={{ marginTop: 0, fontSize: 14 }}>
               A simple notification system using Context and Hooks
             </p>
           </div>
@@ -106,51 +113,56 @@ export default function App() {
 
       <div
         css={{
-          marginTop: 300,
+          marginTop: '22vh',
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          maxWidth: 1100,
+          padding: '0 2rem'
         }}
       >
         <div>
           <h1 css={{ fontSize: 24, fontWeight: 500, marginBottom: 10 }}>
             Send notifications in a jiffy
           </h1>
-          <p>Just wrap your </p>
-          {/* <p css={{ marginTop: 0 }}>
-        A simple notification system for React using Context and Hooks
-        </p> */}
+          <p>
+            Just wrap your app in the <code>ToastProvider</code> component and
+            then call the <code>useToast</code> hook from anywhere inside. Easy
+            peasy.
+          </p>
 
           <div
             css={{
-              marginTop: 30
-              // backgroundColor: '#fff',
-              // border: '1px solid #e5e7eb',
-              // borderRadius: 6,
-              // padding: 30,
-              // flexGrow: 1,
-              // maxWidth: '500px'
+              marginTop: 30,
+              backgroundColor: '#fff',
+              border: '1px solid #e5e7eb',
+              borderRadius: 6,
+              padding: 20,
+              flexGrow: 1,
+              maxWidth: '500px'
             }}
           >
             <form onSubmit={onSubmit}>
               <input
                 type="radio"
                 name="type"
-                value="info"
-                id="info"
+                value="success"
+                id="success"
                 onChange={onChange}
                 defaultChecked
               />
-              <label htmlFor="info">Info</label>
+              <label htmlFor="success">Success</label>
 
               <input
                 type="radio"
                 name="type"
-                value="success"
-                id="success"
+                value="error"
+                id="error"
                 onChange={onChange}
               />
-              <label htmlFor="success">Success</label>
+              <label htmlFor="error">Error</label>
 
               <input
                 type="radio"
@@ -164,13 +176,13 @@ export default function App() {
               <input
                 type="radio"
                 name="type"
-                value="error"
-                id="error"
+                value="info"
+                id="info"
                 onChange={onChange}
               />
-              <label htmlFor="error">Error</label>
+              <label htmlFor="info">Info</label>
 
-              <div css={{ marginTop: 20 }}>
+              <div css={{ marginTop: 14 }}>
                 <button
                   type="submit"
                   css={{

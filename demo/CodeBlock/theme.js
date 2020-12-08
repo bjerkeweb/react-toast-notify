@@ -16,11 +16,11 @@ export default {
     MozHyphens: 'none',
     msHyphens: 'none',
     hyphens: 'none',
-    fontSize: 14
+    fontSize: 13
   },
   'pre[class*="language-"]': {
     color: '#f8f8f2',
-    background: '#112a40',
+    background: '#062a3b',
     fontFamily: 'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
     textAlign: 'left',
     whiteSpace: 'pre',
@@ -36,10 +36,13 @@ export default {
     msHyphens: 'none',
     hyphens: 'none',
     padding: '1em',
-    margin: '.5em 0',
+    margin: '0',
     overflow: 'auto',
-    borderRadius: '0.3em',
-    fontSize: 14
+    // borderRadius: '0.3em',
+    borderBottomLeftRadius: '0.3em',
+    borderBottomRightRadius: '0.3em',
+    fontSize: 13,
+    width: '100%'
   },
   ':not(pre) > code[class*="language-"]': {
     background: '#2E3440',
@@ -60,83 +63,83 @@ export default {
     color: '#636f88'
   },
   punctuation: {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   '.namespace': {
     Opacity: '.7'
   },
   property: {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   tag: {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   constant: {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   symbol: {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   deleted: {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   number: {
     color: '#B48EAD'
   },
   boolean: {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   selector: {
-    color: '#98c892'
+    color: '#bef264'
   },
   'attr-name': {
-    color: '#98c892'
+    color: '#bef264'
   },
   string: {
-    color: '#98c892'
+    color: '#bef264'
   },
   char: {
-    color: '#98c892'
+    color: '#bef264'
   },
   builtin: {
-    color: '#98c892'
+    color: '#bef264'
   },
   inserted: {
-    color: '#98c892'
+    color: '#bef264'
   },
   operator: {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   entity: {
-    color: '#6498ce',
+    color: '#22d3ee',
     cursor: 'help'
   },
   url: {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   '.language-css .token.string': {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   '.style .token.string': {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   variable: {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   atrule: {
-    color: '#bc7eb4'
+    color: '#e879f9'
   },
   'attr-value': {
-    color: '#bc7eb4'
+    color: '#e879f9'
   },
   function: {
-    color: '#bc7eb4'
+    color: '#e879f9'
   },
   'class-name': {
-    color: '#bc7eb4'
+    color: '#e879f9'
   },
   keyword: {
-    color: '#6498ce'
+    color: '#22d3ee'
   },
   regex: {
     color: '#EBCB8B'
