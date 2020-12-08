@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import uniqueId from 'lodash.uniqueid';
 import { TransitionGroup, Transition } from 'react-transition-group';
 import ToastContainer from './ToastContainer';
+import ToastController from './ToastController';
 import Toast from './Toast';
 
 const ToastContext = React.createContext();
@@ -9,9 +10,9 @@ const ToastContext = React.createContext();
 export function ToastProvider({ children, placement }) {
   const [toasts, setToasts] = useState([]);
 
-  const addToast = (message, { type = 'info' } = {}) => {
+  const addToast = (message, { type = 'info', autoDismiss = true } = {}) => {
     const id = uniqueId('toast-');
-    const toast = { message, type, id };
+    const toast = { message, type, id, autoDismiss };
     setToasts(prev => [...prev, toast]);
   };
 
@@ -32,7 +33,7 @@ export function ToastProvider({ children, placement }) {
       {children}
       <ToastContainer placement={placement}>
         <TransitionGroup component={null}>
-          {toasts.map(({ message, type, id }) => (
+          {toasts.map(({ message, type, id, autoDismiss }) => (
             <Transition
               key={id}
               appear
@@ -40,13 +41,14 @@ export function ToastProvider({ children, placement }) {
               unmountOnExit
               timeout={220}
             >
-              {state => (
-                <Toast
+              {transitionState => (
+                <ToastController
                   key={id}
                   type={type}
                   onDismiss={() => removeToast(id)}
                   message={message}
-                  transitionState={state}
+                  transitionState={transitionState}
+                  autoDismiss={autoDismiss}
                 />
               )}
             </Transition>

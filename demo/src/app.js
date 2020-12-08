@@ -33,10 +33,11 @@ const exampleMessages = {
 export default function App() {
   const { addToast, removeAll } = useToast();
   const [type, setType] = useState('success');
+  const [dismiss, setDismiss] = useState(true);
 
   const onSubmit = e => {
     e.preventDefault();
-    addToast(`${exampleMessages[type]}`, { type });
+    addToast(`${exampleMessages[type]}`, { type, autoDismiss: dismiss });
   };
 
   const onChange = e => {
@@ -136,10 +137,10 @@ export default function App() {
           <div
             css={{
               marginTop: 30,
-              backgroundColor: '#fff',
-              border: '1px solid #e5e7eb',
+              // backgroundColor: '#fff',
+              // border: '1px solid #e5e7eb',
               borderRadius: 6,
-              padding: 20,
+              // padding: 20,
               flexGrow: 1,
               maxWidth: '500px'
             }}
@@ -182,7 +183,9 @@ export default function App() {
               />
               <label htmlFor="info">Info</label>
 
-              <div css={{ marginTop: 14 }}>
+              <div
+                css={{ marginTop: 14, display: 'flex', alignItems: 'center' }}
+              >
                 <button
                   type="submit"
                   css={{
@@ -196,9 +199,22 @@ export default function App() {
                 >
                   Add Toast
                 </button>
+
+                <div css={{ marginLeft: 14 }}>
+                  <input
+                    type="checkbox"
+                    name="dismiss"
+                    id="dismiss"
+                    onChange={() => setDismiss(!dismiss)}
+                    defaultChecked
+                  />
+                  <label htmlFor="dismiss">Auto-dismiss</label>
+                </div>
+
                 <button
                   type="button"
                   css={{
+                    display: 'none',
                     background: 'none',
                     border: '1px solid #eaeaed',
                     marginLeft: 10,
