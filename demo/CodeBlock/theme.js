@@ -63,83 +63,83 @@ export default {
     color: '#636f88'
   },
   punctuation: {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   '.namespace': {
     Opacity: '.7'
   },
   property: {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   tag: {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   constant: {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   symbol: {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   deleted: {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   number: {
     color: '#B48EAD'
   },
   boolean: {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   selector: {
-    color: '#bef264'
+    color: '#addb68'
   },
   'attr-name': {
-    color: '#bef264'
+    color: '#addb68'
   },
   string: {
-    color: '#bef264'
+    color: '#addb68'
   },
   char: {
-    color: '#bef264'
+    color: '#addb68'
   },
   builtin: {
-    color: '#bef264'
+    color: '#addb68'
   },
   inserted: {
-    color: '#bef264'
+    color: '#addb68'
   },
   operator: {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   entity: {
-    color: '#22d3ee',
+    color: '#7fdbca',
     cursor: 'help'
   },
   url: {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   '.language-css .token.string': {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   '.style .token.string': {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   variable: {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   atrule: {
-    color: '#e879f9'
+    color: '#c892ea'
   },
   'attr-value': {
-    color: '#e879f9'
+    color: '#c892ea'
   },
   function: {
-    color: '#e879f9'
+    color: '#c892ea'
   },
   'class-name': {
-    color: '#e879f9'
+    color: '#c892ea'
   },
   keyword: {
-    color: '#22d3ee'
+    color: '#7fdbca'
   },
   regex: {
     color: '#EBCB8B'
