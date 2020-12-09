@@ -18,7 +18,7 @@
     "start": "webpack serve",
     "eslint": "eslint .",
     "build": "NODE_ENV=production babel src -d dist",
-    "build:examples": "NODE_ENV=production webpack",
+    "build:examples": "webpack --mode=production",
     "deploy:examples": "gh-pages -d demo/dist"
   },
   "repository": {
