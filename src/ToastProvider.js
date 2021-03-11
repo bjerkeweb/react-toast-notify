@@ -49,6 +49,7 @@ export function ToastProvider({ children, placement }) {
                   message={message}
                   transitionState={transitionState}
                   autoDismiss={autoDismiss}
+                  placement={placement}
                 />
               )}
             </Transition>

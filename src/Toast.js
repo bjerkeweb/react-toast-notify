@@ -41,20 +41,32 @@ const defaultStyles = {
   justifyContent: 'space-between',
   borderRadius: 4,
   boxShadow: `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)`,
-  marginBottom: '12px',
+  marginBottom: '10px',
   background: '#fff',
   userSelect: 'none'
 };
 
-const transitionStyles = {
+const getTranslate = placement => {
+  const placementMap = {
+    top: `translate3d(0%, -120%, 0)`,
+    bottom: `translate3d(0%, 120%, 0)`,
+    right: `translate3d(120%, 0%, 0)`,
+    left: `translate3d(-120%, 0%, 0)`
+  };
+  const pos = placement.split('-');
+  const relevantPos = pos[1] === 'center' ? pos[0] : pos[1];
+  return placementMap[relevantPos];
+};
+
+const transitionStyles = placement => ({
   entering: {
-    opacity: 1,
-    transform: `translate3d(120%, 0, 0)`
+    opacity: 0,
+    transform: getTranslate(placement)
   },
   entered: { opacity: 1, transform: 'translate3d(0,0,0)' },
   exiting: { opacity: 0, transform: 'scale(0.66)' },
   exited: { opacity: 0, transform: 'scale(0.66)' }
-};
+});
 
 const ProgressBar = ({ dismissTimeout, isRunning, color }) => (
   <div
@@ -81,7 +93,8 @@ export default function Toast({
   onMouseEnter,
   onMouseLeave,
   dismissTimeout,
-  autoDismiss
+  autoDismiss,
+  placement
 }) {
   const appearance = appearances[type];
   const Icon = appearance.icon;
@@ -112,7 +125,7 @@ export default function Toast({
       <div
         style={{
           ...defaultStyles,
-          ...transitionStyles[transitionState],
+          ...transitionStyles(placement)[transitionState],
           position: 'relative'
         }}
       >

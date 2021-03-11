@@ -10,7 +10,8 @@ export const ToastController = ({
   onDismiss,
   transitionState,
   transitionDuration,
-  message
+  message,
+  placement = 'top-right'
 }) => {
   const [running, setRunning] = useState(true);
   const [start, setStart] = useState(null);
@@ -65,6 +66,7 @@ export const ToastController = ({
       transitionDuration={transitionDuration}
       transitionState={transitionState}
       message={message}
+      placement={placement}
     />
   );
 };
